@@ -12,9 +12,13 @@
                  [cljsjs/nodejs-externs "1.0.4-1"]
                  [reagent "0.5.1"]]
 
-  :plugins [[lein-cljsbuild "1.1.0"]]
+  :plugins [[lein-cljsbuild "1.1.0"]
+            [lein-less "1.7.5"]]
 
   :min-lein-version "2.5.1"
+
+  :less {:source-paths ["src/less"]
+         :target-path "app/css"}
 
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
                              :compiler {:output-to     "app/js/p/app.js"
