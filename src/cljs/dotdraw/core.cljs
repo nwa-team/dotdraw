@@ -1,10 +1,11 @@
 (ns dotdraw.core
   (:require [reagent.core :as reagent]
+            [dotdraw.ui :as ui]
             [cljsjs.react]))
 
 (defn main-page
   []
-  [:div "Hello World!"])
+  [ui/main-grid])
 
 (defn mount-root
   []
