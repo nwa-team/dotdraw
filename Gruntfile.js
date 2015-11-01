@@ -49,8 +49,26 @@ grunt.initConfig({
   'download-electron': {
     version: electron_version,
     outputDir: 'electron'
-  }
+  },
 
+  shell: {
+    launchFigwheel: {
+        command: 'lein figwheel',
+        options: {
+            async: true
+       }
+    },
+    lessCompile: {
+        command: 'lein less auto',
+        options: {
+            async: true,
+        }
+    },
+    options: {
+        stdout: true,
+        stderr: true,
+        failOnError: true
+    }}
 });
 
 //------------------------------------------------------------------------------
@@ -63,6 +81,7 @@ if (os === "mac") {
   grunt.loadNpmTasks('grunt-appdmg');
 }
 grunt.loadNpmTasks('winresourcer');
+grunt.loadNpmTasks('grunt-shell-spawn');
 
 //------------------------------------------------------------------------------
 // Setup Tasks
@@ -90,6 +109,15 @@ grunt.registerTask('run-app-bower', function() {
 grunt.registerTask('cljsbuild-prod', function() {
   grunt.log.writeln("\nCleaning and building ClojureScript production files...");
   exec("lein do clean, with-profile production cljsbuild once");
+});
+
+grunt.registerTask('launch-dev', function() {
+
+  grunt.log.writeln('Starting figwheel and less compiler');
+  grunt.task.run('shell');
+
+  grunt.log.writeln('Executing grunt laungh task');
+  grunt.task.run('launch');
 });
 
 grunt.registerTask('launch', function(async) {
