@@ -1,26 +1,35 @@
 (ns dotdraw.ui)
 
 (defn main-canvas []
-  ; creates the main canvas object that will take over the whole view
+   "Creates the main canvas object that will take over the whole view"
     [:canvas])
 
-(defn tool-box []
-  ; toolbox objects on the main view
-  [:div "Toolbox"])
+(defn tool-box [props]
+  "Generic component for toolbox element"
+  [:div {:style {:background "lightgrey"}}
+    [:h6 "Toolbox - " (get props :name)]
+    [:div {:class (if (= (get props :orientation) :vertical) "btn-group-vertical" "btn-group")
+           :role "group"}
+      (get props :elements)]])
 
-(defn layers-box []
-  ; layers box on the main view
-  [:div "Layers"])
+(defn render-toolbox-button [name]
+  [:button {:class "btn btn-default"
+            :type "button"
+            :key name} name])
 
-(defn brush-box []
-  ; creates the main brush
-  [:div "Brush"])
+(defn get-toolbox-items []
+  (list
+    (render-toolbox-button "e1")
+    (render-toolbox-button "e2")
+    (render-toolbox-button "e3")))
 
 (defn main-grid []
-  ; puts together the all the elements of the main window
-  [:div.box 
+  "Puts together all the elements of the main window"
+  [:div.container
     [main-canvas]
-    [tool-box]
-    [layers-box]
-    [brush-box]
-  ])
+    [tool-box {:name "Elements"
+               :orientation :vertical
+               :elements (get-toolbox-items)}]
+    [tool-box {:name "Layers"
+               :orientation :horizontal
+               :elements (get-toolbox-items)}]])
