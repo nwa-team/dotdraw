@@ -1,8 +1,11 @@
-(ns dotdraw.ui)
+(ns dotdraw.ui
+  (:require [reagent.core :as r]))
 
 (defn main-canvas []
    "Creates the main canvas object that will take over the whole view"
     [:canvas])
+
+(def draw-state (r/atom "Pencil"))
 
 (defn tool-box [props]
   "Generic component for toolbox element"
@@ -15,18 +18,20 @@
 (defn render-toolbox-button [name]
   [:button {:class "btn btn-default"
             :type "button"
-            :key name} name])
+            :key name
+            :on-click #(swap! draw-state (fn [] (str name)))} name])
 
 (defn get-toolbox-items []
   (list
-    (render-toolbox-button "e1")
-    (render-toolbox-button "e2")
-    (render-toolbox-button "e3")))
+    (render-toolbox-button "Pencil")
+    (render-toolbox-button "Paintbrush")
+    (render-toolbox-button "Eraser")))
 
 (defn main-grid []
   "Puts together all the elements of the main window"
   [:div.container
     [main-canvas]
+    [:div @draw-state]
     [tool-box {:name "Elements"
                :orientation :vertical
                :elements (get-toolbox-items)}]
