@@ -13,7 +13,8 @@
                  [reagent "0.5.1"]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
-            [lein-less "1.7.5"]]
+            [lein-less "1.7.5"]
+            [lein-doo "0.1.6-SNAPSHOT"]]
 
   :min-lein-version "2.5.1"
 
@@ -26,7 +27,12 @@
                                         :asset-path    "js/p/out"
                                         :optimizations :none
                                         :pretty-print  true
-                                        :cache-analysis true}}}}
+                                        :cache-analysis true}}
+                       :node-none {:source-paths ["src/cljs" "test"]
+                                   :compiler {:output-to "out/testable.js"
+                                   :main dotdraw.runner
+                                   :optimizations :none
+                                   :target :nodejs}}}}
 
   :clean-targets ^{:protect false} [:target-path "out" "app/js/p"]
 
