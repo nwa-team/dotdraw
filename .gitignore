@@ -26,3 +26,4 @@ figwheel_server.log
 *.iml
 /app/css
 /out
+/app/css

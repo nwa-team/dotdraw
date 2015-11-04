@@ -5,15 +5,14 @@
   (def c (.getElementById js/document "mainCanvas"))
   (def context (.getContext c "2d"))
   (set! (.-strokeStyle context) "#000000")
-  ;(.beginPath context)
   (.moveTo context (first start) (second start))
   (.lineTo context (first end) (second end))
   (.stroke context))
 
 
 "Draws a grid on 10 pixels wide"
-(defn draw-grid [width height]
-  (def w (+ (/ width 10) 1))
-  (def h (+ (/ height 10) 1))
-  (dotimes [n w] (draw-line [(* n 10), 0] [(* n 10), height]))
-  (dotimes [n h] (draw-line [0, (* n 10)] [width, (* n 10)])))
+(defn draw-grid [width height pixel-size]
+  (def w (+ (/ width pixel-size) 1))
+  (def h (+ (/ height pixel-size) 1))
+  (dotimes [x w] (draw-line [(* x pixel-size), 0] [(* x pixel-size), height]))
+  (dotimes [y h] (draw-line [0, (* y pixel-size)] [width, (* y pixel-size)])))
