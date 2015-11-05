@@ -8,21 +8,22 @@
               :width (get props :width)
               :height (get props :height)}])
 
-(def draw-state (r/atom "Pencil"))
+"Should hold application wide state"
+(defonce app-state (r/atom {:drawState "Pencil"}))
 
 (defn tool-box [props]
   "Generic component for toolbox element"
-  [:div {:style {:background "lightgrey"}}
-    [:h6 "Toolbox - " (get props :name)]
-    [:div {:class (if (= (get props :orientation) :vertical) "btn-group-vertical" "btn-group")
+  [:div.toolbox
+    [:h6 "Toolbox - " (:name props)]
+    [:div {:class (if (= (:orientation props) :vertical) "btn-group-vertical" "btn-group")
            :role "group"}
-      (get props :elements)]])
+      (:elements props)]])
 
 (defn render-toolbox-button [name]
   [:button {:class "btn btn-default"
             :type "button"
             :key name
-            :on-click #(swap! draw-state (fn [] (str name)))} name])
+            :on-click #(swap! app-state update-in [:drawState] (fn [] (str name)))} name])
 
 (defn render-checkbox [name state]
   "Creates a checkbox for the grid"
@@ -43,11 +44,11 @@
     [main-canvas {:id "mainCanvas"
                   :width 350
                   :height 250}]
-    [:div @draw-state]
+    [:div (:drawState @app-state)]
     [tool-box {:name "Elements"
-               :orientation :vertical
-               :elements (get-toolbox-items)}]
-    [tool-box {:name "Layers"
                :orientation :horizontal
                :elements (get-toolbox-items)}]
+    ;[tool-box {:name "Layers"
+    ;           :orientation :vertical
+    ;           :elements (get-toolbox-items)}]
     [render-checkbox "Show Grid" false]])
