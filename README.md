@@ -1,5 +1,5 @@
 
-# dotdraw
+# dotdraw [![Build Status](https://travis-ci.org/nwa-team/dotdraw.svg?branch=development)](https://travis-ci.org/nwa-team/dotdraw)
 
 ## Requirements
 
