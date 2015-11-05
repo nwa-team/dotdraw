@@ -1,5 +1,5 @@
 language: clojure
-script: lein doo node node-none
+script: lein doo node node-none once
 notifications:
   slack: nwa-team:Nmpq3XpfaosJnwHCq8zlgmhO
 jdk:
