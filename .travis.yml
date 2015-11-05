@@ -4,3 +4,7 @@ notifications:
   slack: nwa-team:Nmpq3XpfaosJnwHCq8zlgmhO
 jdk:
   - oraclejdk8
+branches:
+  only:
+    - master
+    - development
