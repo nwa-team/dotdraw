@@ -30,6 +30,10 @@ This will install the node dependencies for the project, along with grunt and bo
 
 
 ## Development mode
+Start using:
+grunt launch-dev
+
+or
 
 Start the figwheel server:
 
