@@ -38,9 +38,9 @@
     (render-toolbox-button "Paintbrush")
     (render-toolbox-button "Eraser")))
 
-(defn main-grid []
+(defn mainGrid-render []
   "Puts together all the elements of the main window"
-  [:div.container
+  [:div {:class "container ui-widget-content"}
     [main-canvas {:id "mainCanvas"
                   :width 350
                   :height 250}]
@@ -52,3 +52,10 @@
     ;           :orientation :vertical
     ;           :elements (get-toolbox-items)}]
     [render-checkbox "Show Grid" false]])
+
+(defn mainGrid-did-mount [this]
+  .DataTable (js/$ (r/dom-node this)))
+
+(defn mainGrid []
+  (r/create-class {:reagent-render mainGrid-render
+                   :component-did-mount mainGrid-did-mount}))

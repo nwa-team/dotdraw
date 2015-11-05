@@ -5,7 +5,7 @@
 
 (defn main-page
   []
-  [ui/main-grid])
+  [ui/mainGrid])
 
 (defn mount-root
   []
