@@ -1,0 +1,8 @@
+language: clojure
+script: lein doo node node-none
+notifications:
+  slack: nwa-team:Nmpq3XpfaosJnwHCq8zlgmhO
+jdk:
+  - openjdk7
+  - oraclejdk7
+  - oraclejdk8
