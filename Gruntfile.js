@@ -59,7 +59,7 @@ grunt.initConfig({
        }
     },
     lessCompile: {
-        command: 'lein less auto',
+        command: 'lein sass auto',
         options: {
             async: true,
         }
