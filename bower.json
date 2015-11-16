@@ -2,7 +2,9 @@
   "name": "dotdraw",
   "version": "0.0.0",
   "dependencies": {
-    "bootstrap": "3.3.5"
+    "bootstrap": "3.3.5",
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4"
   },
   "license": "MIT",
   "private": true,

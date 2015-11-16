@@ -40,7 +40,8 @@
 
 (defn mainGrid-render []
   "Puts together all the elements of the main window"
-  [:div {:class "container ui-widget-content"}
+  [:div {:class "container ui-widget-content"
+         :id "draggable"}
     [main-canvas {:id "mainCanvas"
                   :width 350
                   :height 250}]
