@@ -13,13 +13,14 @@
                  [reagent "0.5.1"]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
-            [lein-less "1.7.5"]
-            [lein-doo "0.1.6-SNAPSHOT"]]
+            [lein-doo "0.1.6-SNAPSHOT"]
+            [lein-haml-sass "0.2.7-SNAPSHOT"]]
 
   :min-lein-version "2.5.1"
 
-  :less {:source-paths ["src/less"]
-         :target-path "app/css"}
+  :sass {:src "src/sass"
+         :output-directory "app/css"
+         :output-extension "css"}
 
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
                              :compiler {:output-to     "app/js/p/app.js"
